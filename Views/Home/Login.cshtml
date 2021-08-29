@@ -1,0 +1,64 @@
+﻿@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/Layout.cshtml";
+
+    string mensagemAviso = !string.IsNullOrWhiteSpace(ViewBag.Alerta) ? (string)ViewBag.Alerta : "";
+}
+
+
+@using (Html.BeginForm("Login", "Home", FormMethod.Post))
+{
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12 col-md-12" style="@(!string.IsNullOrWhiteSpace(mensagemAviso) ? "display: block;" : "display: none;")">
+                <div class="alert alert-warning">
+                    <strong>
+                        <label id="lblMensagemAviso" style="font:bold;font-size:15px;text-align:center">@mensagemAviso</label>
+                    </strong>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid" style="width:500px">
+        <div class="card bg-gradient">
+            <div class="card-header alert-primary">
+                <h2 style="text-align:center">Login</h2>
+            </div>
+            <div class="card-body">
+                <div class="row mt-3">
+                    <div class="col-lg-2 col-md-2 col-sm-2"></div>
+                    <div class="col-lg-10 col-sm-10" style="text-align:center">
+                        <input type="text" class="form-control" name="Login" id="Login" aria-describedby="Login" placeholder="Login" />
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-lg-2 col-md-2 col-sm-2"></div>
+                    <div class="col-lg-10 col-sm-10" style="text-align:center">
+                        <input type="password" class="form-control" name="Senha" id="Senha" aria-describedby="Senha" placeholder="Senha" />
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-lg-1 col-md-1 col-sm-1"></div>
+                    <div class="col-lg-10 col-sm-10" style="text-align:center">
+                        <input type="submit" id="btnLogin" class="btn btn-outline-primary" value="Entrar" />
+                    </div>
+                </div>
+
+                <div class="container">
+                    <div class="row" style="padding:10px">
+                        <div class="col" style="text-align:center">
+                            <a href="@Url.Action("ResetSenha","Home")">Nova Senha</a>
+                        </div>
+                        <div class="col" style="text-align:center">
+                            <a href="@Url.Action("Cadastro","Home")">Cadastro Usuário</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+}

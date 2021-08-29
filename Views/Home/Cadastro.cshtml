@@ -1,0 +1,89 @@
+﻿
+@{
+    ViewBag.Title = "Cadastro";
+
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<section>
+    <main>
+        <div class="container-fluid" style="width:500px">
+            <div class="card bg-gradient">
+                <div class="card-header alert-primary">
+                    <h2 style="text-align:center">Cadastro de Usuário</h2>
+                </div>
+                <div class="card-body">
+                    <div class="row mt-3">
+                        <div class="col-lg-2 col-md-2 col-sm-2"></div>
+                        <div class="col-lg-10 col-sm-10" style="text-align:center">
+                            <input type="text" class="form-control" name="Nome" id="Nome" aria-describedby="Nome" placeholder="Nome Completo" />
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-lg-2 col-md-2 col-sm-2"></div>
+                        <div class="col-lg-10 col-sm-10" style="text-align:center">
+                            <input type="email" class="form-control" name="Email" id="Email" aria-describedby="Email" placeholder="Email" />
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-lg-2 col-md-2 col-sm-2"></div>
+                        <div class="col-lg-10 col-sm-10" style="text-align:center">
+                            <input type="text" class="form-control" name="Login" id="Login" aria-describedby="Login" placeholder="Login" />
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-lg-2 col-md-2 col-sm-2"></div>
+                        <div class="col-lg-10 col-sm-10" style="text-align:center">
+                            <input type="password" class="form-control" maxlength="10" name="Senha" id="Senha" aria-describedby="Senha" placeholder="Senha" />
+                            <small>Senha de 10 caracteres</small>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-lg-1 col-md-1 col-sm-1"></div>
+                        <div class="col-lg-5 col-sm-10" style="text-align:center">
+                            <button type="button" class="btn btn-primary" id="btnCadastro" onclick="CadastraNovoUsuario()">
+                                Cadastrar
+                            </button>
+                        </div>
+                        <div class="col-lg-5 col-sm-5" style="text-align:center">
+                            <a class="btn btn-warning" href="@Url.Action("Login","Home")">Voltar</a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </main>
+</section>
+
+<script>
+
+    function CadastraNovoUsuario(){
+
+        var Dados = {};
+
+        var Nome = $("#Nome").val();
+        var Email = $("#Email").val();
+        var Login = $("#Login").val();
+        var Senha = $("#Senha").val();
+
+        Dados.Nome = Nome;
+        Dados.Email = Email;
+        Dados.Login = Login;
+        Dados.Senha = Senha;
+
+        $.ajax({
+
+            url: "@Url.Action("CadastraNovoUsuario")",
+            type: "POST",
+            contentType: "application/json",
+            data: JSON.stringify(Dados),
+            success: function (response) {
+
+                alert("Usuário Cadastrado Com Sucesso!");
+            }
+        })
+
+    }
+
+</script>

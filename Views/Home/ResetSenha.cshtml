@@ -1,0 +1,72 @@
+﻿@{
+    ViewBag.Title = "ResetSenha";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<section>
+    <main>
+        <div class="container-fluid" style="width:500px">
+            <div class="card bg-gradient">
+                <div class="card-header alert-primary">
+                    <h2 style="text-align:center">Alterar Senha</h2>
+                </div>
+                <div class="card-body">
+                    <div class="row mt-3">
+                        <div class="row mt-3">
+                            <div class="col-lg-2 col-md-2 col-sm-2"></div>
+                            <div class="col-lg-10 col-sm-10" style="text-align:center">
+                                <input type="text" class="form-control" name="Login" id="Login" aria-describedby="Login" placeholder="Login" />
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col-lg-2 col-md-2 col-sm-2"></div>
+                            <div class="col-lg-10 col-sm-10" style="text-align:center">
+                                <input type="password" class="form-control" maxlength="10" name="Senha" id="Senha" aria-describedby="Senha" placeholder="Nova Senha" />
+                                <small>Senha de 10 caracteres</small>
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col-lg-1 col-md-1 col-sm-1"></div>
+                            <div class="col-lg-5 col-sm-5" style="text-align:center">
+                                <button type="button" class="btn btn-primary" id="btnCadastro" onclick="AlterarSenhaUsuario()">
+                                    ALterar
+                                </button>
+                            </div>
+                            <div class="col-lg-5 col-sm-5" style="text-align:center">
+                                <a class="btn btn-warning" href="@Url.Action("Login","Home")">Voltar</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</section>
+
+<script>
+
+    function AlterarSenhaUsuario(){
+
+        var Dados = {};
+
+        var Login = $("#Login").val();
+        var Senha = $("#Senha").val();
+
+        Dados.Login = Login;
+        Dados.Senha = Senha;
+
+        $.ajax({
+
+                url: "@Url.Action("AlterarSenhaUsuario")",
+                type: "POST",
+                contentType: "application/json",
+                data: JSON.stringify(Dados),
+                success: function (response) {
+
+                    alert("Senha Alterada Com Sucesso!");
+                }
+        })
+
+    }
+
+</script>
