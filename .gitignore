@@ -1,0 +1,22 @@
+
+# Visual Studio
+.vs/
+*.user
+*.suo
+
+# .NET
+bin/
+obj/
+[Dd]ebug/
+[Rr]elease/
+
+# NuGet
+packages/
+*.nupkg
+
+# Logs
+*.log
+
+# Configurações locais e segredos
+.env
+.env.*
